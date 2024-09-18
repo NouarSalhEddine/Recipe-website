@@ -1,25 +1,19 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react';
 
-// Supports weights 200-800
-import '@fontsource/poppins'
-import '@fontsource-variable/changa'
-
-const Theme = extendTheme({
-  config: {
-    initialColorMode: 'system',
-    useSystemColorMode: true
-  },
+const theme = extendTheme({
+  
+  
   colors: {
     lightMode: {
-      primary: '#3182CE',
+      primary: '#FEBD2F',
       secondary: '#F2A50A',
-      background: '#FFFFFF',
+      background: '#F4F2ED',
       inputBackground: '#FFFFFF',
       text: '#1A2E4A',
       borderColor: '#E3E3E9'
     },
     darkMode: {
-      primary: '#63B3ED',
+      primary: '#FEBD2F',
       secondary: '#1D2B83',
       background: '#1C1C1E',
       inputBackground: '#111111',
@@ -31,7 +25,38 @@ const Theme = extendTheme({
     heading: 'Poppins, Changa',
     body: 'Poppins, Changa'
   },
-  fontDisplay: 'swap'
-})
+  fontDisplay: 'swap',
+  components: {
+    Button: {
+      baseStyle: {
+        fontWeight: 'bold',
+        borderRadius: 'md',
+      },
+      sizes: {
+        lg: {
+          h: '56px',
+          fontSize: 'lg',
+          px: '32px',
+        },
+      },
+      variants: {
+        solid: (props) => ({
+          bg: props.colorMode === 'dark' ? 'accent.500' : 'accent.600',
+          color: 'white',
+          _hover: {
+            bg: props.colorMode === 'dark' ? 'accent.400' : 'accent.700',
+          },
+        }),
+      },
+    },
+    Input: {
+      baseStyle: {
+        field: {
+          borderRadius: 'md',
+        },
+      },
+    },
+  },
+});
 
-export default Theme
+export default theme;

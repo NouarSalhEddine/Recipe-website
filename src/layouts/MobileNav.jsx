@@ -1,41 +1,36 @@
-import {
-  IconButton,
-  Flex,
-  HStack,
-  useColorModeValue
-} from '@chakra-ui/react'
-import PropTypes from 'prop-types'
-import { FiMenu } from 'react-icons/fi'
+import { IconButton, Flex, HStack, useColorModeValue } from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import { FiMenu } from "react-icons/fi";
 
-import { ColorModeSwitcher } from '@components'
+import { ColorModeSwitcher } from "@components";
 
 const MobileNav = ({ onOpen, ...rest }) => {
   return (
     <Flex
+      bg={useColorModeValue("lightMode.background", "darkMode.background")}
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue('white', '#171717')}
-      justifyContent={{ base: 'space-between', md: 'flex-end' }}
+      justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
       <IconButton
-        display={{ base: 'flex', md: 'none' }}
+        display={{ base: "flex", md: "none" }}
         onClick={onOpen}
         variant="outline"
         aria-label="open menu"
         icon={<FiMenu />}
       />
 
-      <HStack spacing={{ base: '0', md: '6' }}>
+      <HStack spacing={{ base: "0", md: "6" }}>
         <ColorModeSwitcher />
       </HStack>
     </Flex>
-  )
-}
+  );
+};
 
 MobileNav.propTypes = {
-  onOpen: PropTypes.func.isRequired
-}
-export default MobileNav
+  onOpen: PropTypes.func.isRequired,
+};
+export default MobileNav;

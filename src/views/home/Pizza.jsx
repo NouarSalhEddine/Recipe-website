@@ -59,7 +59,7 @@ const HomePizzaSection = () => {
   };
 
   return (
-    <Box p={5}>
+    <Box  p={5}>
       <Heading mb={5}>Pizza Recipes</Heading>
       <Input
         value={searchTerm}

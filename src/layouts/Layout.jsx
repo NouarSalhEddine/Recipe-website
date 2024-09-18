@@ -15,8 +15,9 @@ const Layout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
-    <Box minHeight="100vh" bg={useColorModeValue('gray.100', '#212121')}>
+    <Box minHeight="100vh" bg={useColorModeValue('lightMode.background', 'darkMode.background')}>
       <Sidebar
+        
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
       />

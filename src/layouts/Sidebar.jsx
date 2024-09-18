@@ -32,7 +32,7 @@ const Sidebar = ({ onClose, ...rest }) => {
       spacing={10}
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="5" justifyContent="space-between">
+      <Flex h="-40" alignItems="center" mx="5" justifyContent="space-between">
         <Image alignSelf='center' boxSize="10rem" src={logoImage} alt="nojoom-logo" />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
