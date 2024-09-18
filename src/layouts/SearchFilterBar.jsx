@@ -2,10 +2,11 @@ import { Input, Button, Select, HStack } from '@chakra-ui/react';
 import { useSearch } from '../context/SearchProvider';
 
 const SearchFilterBar = () => {
-  const { searchTerm, setSearchTerm, cuisine, setCuisine, setCurrentPage } = useSearch();
+  const { searchTerm, setSearchTerm, cuisine, setCuisine, setCurrentPage,setRefresh } = useSearch();
 
   const handleSearch = () => {
-    setCurrentPage(1); // Reset to the first page when a new search is triggered
+    setCurrentPage(1); 
+    setRefresh((prev) => prev + 1);
   };
 
   return (

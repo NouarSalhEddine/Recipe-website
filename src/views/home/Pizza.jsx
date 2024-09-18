@@ -12,14 +12,16 @@ import { useSearch } from '../../context/SearchProvider';
 
 const HomePizzaSection = () => {
   const [recipes, setRecipes] = useState([]);
-  const { searchTerm, cuisine, currentPage, setTotalPages } = useSearch();
-  const API_KEY = '1336f6083c80423c98f25dc3ffaeb61c';
-console.log(searchTerm);
+  const { searchTerm, cuisine, currentPage, setCurrentPage,refresh } = useSearch();
+  const [totalPages, setTotalPages] = useState(0);
+  const API_KEY = '0fde6edfe7f94488ae0c333602beb98e';
+console.log(refresh);
   // Fetch pizzas by default and apply search and filter
   const searchRecipes = async () => {
+    console.log("fetching -----");
     let query = `query=pizza`; // Default pizza search
     if (searchTerm) {
-      query += `&query=${searchTerm}`;
+      query = `&query=${searchTerm}`;
     }
     if (cuisine) {
       query += `&cuisine=${cuisine}`;
@@ -42,7 +44,7 @@ console.log(searchTerm);
 
   useEffect(() => {
     searchRecipes();
-  }, [currentPage, searchTerm, cuisine]);
+  }, [currentPage, cuisine,refresh]);
 
   return (
     <Box p={5}>
@@ -67,8 +69,8 @@ console.log(searchTerm);
 
       <Pagination
         currentPage={currentPage}
-        // totalPages={totalPages}
-        // onPageChange={setCurrentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
       />
     </Box>
   );

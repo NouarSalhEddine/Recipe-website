@@ -8,6 +8,7 @@ export const SearchProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [cuisine, setCuisine] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [refresh, setRefresh] = useState(0);
 
   return (
     <SearchContext.Provider
@@ -18,6 +19,8 @@ export const SearchProvider = ({ children }) => {
         setCuisine,
         currentPage,
         setCurrentPage,
+        setRefresh,
+        refresh
       }}
     >
       {children}
