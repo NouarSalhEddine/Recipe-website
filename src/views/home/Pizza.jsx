@@ -9,14 +9,14 @@ import {
 } from '@chakra-ui/react';
 import Pagination from '../shared/pagination';
 import { useSearch } from '../../context/SearchProvider';
-import ProductAddToCart from '../shared/Cards';
+import RecipeCard from '../shared/RecipeGrid';
 
 
 const HomePizzaSection = () => {
   const [recipes, setRecipes] = useState([]);
   const { searchTerm, cuisine, currentPage, setCurrentPage,refresh } = useSearch();
   const [totalPages, setTotalPages] = useState(0);
-  const API_KEY = '0fde6edfe7f94488ae0c333602beb98e';
+  const API_KEY = 'de64dca170fb4aa097111e4c7d5019ee';
 console.log(refresh);
   // Fetch pizzas by default and apply search and filter
   const searchRecipes = async () => {
@@ -63,7 +63,7 @@ console.log(refresh);
             //     </Box>
             //   </Link>
             // </Box>
-            <ProductAddToCart key={recipe.id} recipe={recipe} />
+            <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </SimpleGrid>
       ) : (
