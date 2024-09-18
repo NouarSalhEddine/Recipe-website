@@ -1,30 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
-  Text,
-  Input,
-  Button,
-  Select,
   SimpleGrid,
   Image,
   Heading,
+  Text,
 } from '@chakra-ui/react';
 import Pagination from '../shared/pagination';
+import { useSearch } from '../../context/SearchProvider';
 
 const HomePizzaSection = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [recipes, setRecipes] = useState([]);
-  const [cuisine, setCuisine] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
-  const API_KEY = '98634d9dfad84dc7b74b698566d538b3';
-  
+  const { searchTerm, cuisine, currentPage, setTotalPages } = useSearch();
+  const API_KEY = '1336f6083c80423c98f25dc3ffaeb61c';
+console.log(searchTerm);
   // Fetch pizzas by default and apply search and filter
   const searchRecipes = async () => {
-    // Always include "pizza" in the query to filter for pizza recipes
-    let query = `query=pizza`;
+    let query = `query=pizza`; // Default pizza search
     if (searchTerm) {
       query += `&query=${searchTerm}`;
     }
@@ -43,44 +36,17 @@ const HomePizzaSection = () => {
       setRecipes(data.results);
       setTotalPages(Math.ceil(data.totalResults / 5)); // Calculate total pages
     } else {
-      setRecipes([]); // In case of no results
+      setRecipes([]);
     }
   };
 
-  // Fetch all pizzas when the component is first loaded
   useEffect(() => {
     searchRecipes();
-  }, [currentPage]);
-
-  // Trigger search when user hits the search button
-  const handleSearch = () => {
-    setCurrentPage(1); // Reset to first page on new search
-    searchRecipes();
-  };
+  }, [currentPage, searchTerm, cuisine]);
 
   return (
-    <Box  p={5}>
+    <Box p={5}>
       <Heading mb={5}>Pizza Recipes</Heading>
-      <Input
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search for pizza..."
-        mb={3}
-      />
-      <Select
-        value={cuisine}
-        onChange={(e) => setCuisine(e.target.value)}
-        placeholder="Filter by cuisine"
-        mb={3}
-      >
-        <option value="">All</option>
-        <option value="italian">Italian</option>
-        <option value="mexican">Mexican</option>
-        {/* Add more cuisines */}
-      </Select>
-      <Button onClick={handleSearch} mb={5}>
-        Search
-      </Button>
 
       {recipes.length > 0 ? (
         <SimpleGrid columns={[1, 2, 3]} spacing={5}>
@@ -101,8 +67,8 @@ const HomePizzaSection = () => {
 
       <Pagination
         currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage} // Function to update current page
+        // totalPages={totalPages}
+        // onPageChange={setCurrentPage}
       />
     </Box>
   );

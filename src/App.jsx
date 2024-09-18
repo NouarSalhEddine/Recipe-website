@@ -1,17 +1,20 @@
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 // import { I18nextProvider } from "react-i18next";
 
-import Theme from './themes/theme'
+import Theme from "./themes/theme";
 // import i18n from '@i18n/i18n'
-import Router from '@routes/router'
+import Router from "@routes/router";
+import { SearchProvider } from "./context/SearchProvider";
 
-function App () {
+function App() {
   return (
-      <ChakraProvider theme={Theme}>
+    <ChakraProvider theme={Theme}>
+      <SearchProvider>
         <Router />
         <ColorModeScript />
-      </ChakraProvider>
-  )
+      </SearchProvider>
+    </ChakraProvider>
+  );
 }
 
-export default App
+export default App;
