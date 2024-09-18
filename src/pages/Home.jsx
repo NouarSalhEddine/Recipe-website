@@ -1,5 +1,16 @@
+// src/pages/Home.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Box,
+  Input,
+  Button,
+  Select,
+  SimpleGrid,
+  Image,
+  Heading,
+  Text,
+} from '@chakra-ui/react';
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,50 +31,58 @@ function Home() {
   };
 
   useEffect(() => {
+    console.log(recipes);
     if (searchTerm) {
       searchRecipes();
     }
   }, [searchTerm, cuisine, currentPage]);
 
   return (
-    <div>
-      <h1>Recipe Search</h1>
-      <input
-        type="text"
+    <Box p={5}>
+      <Heading mb={5}>Recipe Search</Heading>
+      <Input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search for a recipe..."
+        mb={3}
       />
-      <select value={cuisine} onChange={(e) => setCuisine(e.target.value)}>
+      <Select value={cuisine} onChange={(e) => setCuisine(e.target.value)} mb={3}>
         <option value="">All</option>
         <option value="italian">Italian</option>
         <option value="mexican">Mexican</option>
         {/* Add more cuisines */}
-      </select>
-      <button onClick={searchRecipes}>Search</button>
+      </Select>
+      <Button onClick={searchRecipes} mb={5}>
+        Search
+      </Button>
 
-      <div className="recipe-list">
+      <SimpleGrid columns={[1, 2, 3]} spacing={5}>
         {recipes.map((recipe) => (
-          <div key={recipe.id}>
+          <Box key={recipe.id} borderWidth="1px" borderRadius="lg" overflow="hidden">
             <Link to={`/recipe/${recipe.id}`}>
-              <h2>{recipe.title}</h2>
-              <img src={recipe.image} alt={recipe.title} />
+              <Image src={recipe.image} alt={recipe.title} />
+              <Box p={5}>
+                <Heading size="md">{recipe.title}</Heading>
+              </Box>
             </Link>
-          </div>
+          </Box>
         ))}
-      </div>
+      </SimpleGrid>
 
-      <div className="pagination">
-        <button
+      <Box mt={5}>
+        <Button
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
+          mr={2}
         >
           Previous
-        </button>
-        <span>Page {currentPage}</span>
-        <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
-      </div>
-    </div>
+        </Button>
+        <Text as="span">Page {currentPage}</Text>
+        <Button onClick={() => setCurrentPage(currentPage + 1)} ml={2}>
+          Next
+        </Button>
+      </Box>
+    </Box>
   );
 }
 
