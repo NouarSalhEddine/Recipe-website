@@ -1,16 +1,17 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import RecipeDetail from './pages/RecipeDetail';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+// import { I18nextProvider } from "react-i18next";
 
-function App() {
+import Theme from '@themes/theme'
+// import i18n from '@i18n/i18n'
+import Router from '@routes/router'
+
+function App () {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/recipe/:id" element={<RecipeDetail />} />
-      </Routes>
-    </Router>
-  );
+      <ChakraProvider theme={Theme}>
+        <Router />
+        <ColorModeScript />
+      </ChakraProvider>
+  )
 }
 
-export default App;
+export default App

@@ -11,14 +11,17 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react';
+import Pagination from '../shared/pagination';
 
-function Home() {
+
+const HomeDessertSection = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [cuisine, setCuisine] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const API_KEY = 'ee8ba18a80ea457ebe7b699636d79059';
+  const API_KEY = 'YOUR_SPOONACULAR_API_KEY';
 
   const searchRecipes = async () => {
     const response = await fetch(
@@ -28,10 +31,10 @@ function Home() {
     );
     const data = await response.json();
     setRecipes(data.results);
+    setTotalPages(Math.ceil(data.totalResults / 5)); // Set total pages based on API response
   };
 
   useEffect(() => {
-    console.log(recipes);
     if (searchTerm) {
       searchRecipes();
     }
@@ -69,21 +72,13 @@ function Home() {
         ))}
       </SimpleGrid>
 
-      <Box mt={5}>
-        <Button
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-          mr={2}
-        >
-          Previous
-        </Button>
-        <Text as="span">Page {currentPage}</Text>
-        <Button onClick={() => setCurrentPage(currentPage + 1)} ml={2}>
-          Next
-        </Button>
-      </Box>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage} // Function to update current page
+      />
     </Box>
   );
 }
 
-export default Home;
+export default HomeDessertSection
