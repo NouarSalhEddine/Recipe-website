@@ -9,6 +9,8 @@ import {
 } from '@chakra-ui/react';
 import Pagination from '../shared/pagination';
 import { useSearch } from '../../context/SearchProvider';
+import ProductAddToCart from '../shared/Cards';
+
 
 const HomePizzaSection = () => {
   const [recipes, setRecipes] = useState([]);
@@ -51,16 +53,17 @@ console.log(refresh);
       <Heading mb={5}>Pizza Recipes</Heading>
 
       {recipes.length > 0 ? (
-        <SimpleGrid columns={[1, 2, 3]} spacing={5}>
+        <SimpleGrid columns={[1, 2, 3]} spacing={2}>
           {recipes.map((recipe) => (
-            <Box key={recipe.id} borderWidth="1px" borderRadius="lg" overflow="hidden">
-              <Link to={`/recipe/${recipe.id}`}>
-                <Image src={recipe.image} alt={recipe.title} />
-                <Box p={5}>
-                  <Heading size="md">{recipe.title}</Heading>
-                </Box>
-              </Link>
-            </Box>
+            // <Box key={recipe.id} borderWidth="1px" borderRadius="lg" overflow="hidden">
+            //   <Link to={`/recipe/${recipe.id}`}>
+            //     <Image src={recipe.image} alt={recipe.title} />
+            //     <Box p={5}>
+            //       <Heading size="md">{recipe.title}</Heading>
+            //     </Box>
+            //   </Link>
+            // </Box>
+            <ProductAddToCart key={recipe.id} recipe={recipe} />
           ))}
         </SimpleGrid>
       ) : (

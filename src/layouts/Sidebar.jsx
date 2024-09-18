@@ -26,6 +26,7 @@ const Sidebar = ({ onClose, ...rest }) => {
   return (
     <Box
       bg={useColorModeValue('white', '#171717')}
+      
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
@@ -57,6 +58,7 @@ const NavItem = ({ path, icon, onClose, children, ...rest }) => {
       to={path}
       style={{ textDecoration: 'none' }}
       _focus={{ boxShadow: 'none' }}
+      
     >
       <Flex
         align="center"
@@ -70,7 +72,7 @@ const NavItem = ({ path, icon, onClose, children, ...rest }) => {
         onClick={onClose}
         _hover={{
           bg: useColorModeValue('lightMode.primary', 'darkMode.primary'),
-          color: useColorModeValue('white', 'black')
+          color: useColorModeValue('black', 'black')
         }}
         {...rest}
       >
