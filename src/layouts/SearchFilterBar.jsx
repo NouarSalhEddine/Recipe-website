@@ -14,7 +14,9 @@ const SearchFilterBar = () => {
       <Input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search for pizza..."
+        placeholder="Search for recipes..."
+        borderColor="#FEBD2F"
+        focusBorderColor="#F2A50A"
       />
       <Select
         value={cuisine}

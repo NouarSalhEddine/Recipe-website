@@ -24,28 +24,11 @@ const Layout = () => {
           <Sidebar onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      <MobileNav 
-        onOpen={onOpen} 
-        searchTerm={searchTerm} 
-        setSearchTerm={setSearchTerm} 
-        cuisine={cuisine} 
-        setCuisine={setCuisine} 
-        handleSearch={handleSearch} 
+      <MobileNav onOpen={onOpen} 
       />
       <Box ml={{ base: 0, md: 60 }}>
-      <SearchFilterBar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        cuisine={cuisine}
-        setCuisine={setCuisine}
-        handleSearch={handleSearch}
-      />
+     
         <Outlet
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          cuisine={cuisine}
-          setCuisine={setCuisine}
-          handleSearch={handleSearch}
         />
       </Box>
     </Box>
