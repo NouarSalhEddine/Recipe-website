@@ -8,25 +8,26 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
-import { useState } from "react";
 import { useSearch } from "../../context/SearchProvider";
 
-import HomePizzaSection from "./Pizza";
-import HomeDessertSection from "./Dessert";
+import HomeRecipesSection from "./Recipes";
 
 const HomeSection = () => {
   const bgColor = useColorModeValue("gray.900", "gray.100");
   const textColor = useColorModeValue("gray.100", "gray.900");
-  const { selectedTab,setSelectedTab } = useSearch(); // Assuming you have a context for search
-
+  const { selectedTab, setSelectedTab } = useSearch();
   const handleTabChange = (index) => {
     setSelectedTab(index);
   };
 
-
   return (
     <Flex padding={2} overflowY="auto" flexDirection="column">
-      <Tabs variant="soft-rounded" colorScheme="blue" index={selectedTab} onChange={handleTabChange}>
+      <Tabs
+        variant="soft-rounded"
+        colorScheme="blue"
+        index={selectedTab}
+        onChange={handleTabChange}
+      >
         <Heading
           bg={useColorModeValue("lightMode.background", "darkMode.background")}
           position="fixed"
@@ -52,7 +53,14 @@ const HomeSection = () => {
           pb={20}
           pt={5}
         >
-          {["All Recipes", "Pizzas", "Dessert", "Noodle", "Cocktails", "Salad"].map((label, index) => (
+          {[
+            "All Recipes",
+            "Pizzas",
+            "Dessert",
+            "Noodle",
+            "Cocktails",
+            "Salad",
+          ].map((label, index) => (
             <Tab
               key={label}
               color={useColorModeValue("gray.800", "gray.100")}
@@ -71,22 +79,22 @@ const HomeSection = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <HomePizzaSection filter={selectedTab === 0 ? "All Recipes" : ""} />
+            <HomeRecipesSection filter={selectedTab === 0 ? "All Recipes" : ""} />
           </TabPanel>
           <TabPanel>
-            <HomePizzaSection filter={selectedTab === 1 ? "Pizzas" : ""} />
+            <HomeRecipesSection filter={selectedTab === 1 ? "Pizzas" : ""} />
           </TabPanel>
           <TabPanel>
-            <HomePizzaSection filter={selectedTab === 2 ? "Dessert" : ""}/>
+            <HomeRecipesSection filter={selectedTab === 2 ? "Dessert" : ""} />
           </TabPanel>
           <TabPanel>
-            <HomePizzaSection filter={selectedTab === 3 ? "Noodle" : ""} />
+            <HomeRecipesSection filter={selectedTab === 3 ? "Noodle" : ""} />
           </TabPanel>
           <TabPanel>
-            <HomePizzaSection filter={selectedTab === 4 ? "Cocktails" : ""} />
+            <HomeRecipesSection filter={selectedTab === 4 ? "Cocktails" : ""} />
           </TabPanel>
           <TabPanel>
-            <HomePizzaSection filter={selectedTab === 5 ? "Salad" : ""} />
+            <HomeRecipesSection filter={selectedTab === 5 ? "Salad" : ""} />
           </TabPanel>
         </TabPanels>
       </Tabs>

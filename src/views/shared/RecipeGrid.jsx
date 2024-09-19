@@ -41,39 +41,29 @@ function Rating({ rating, numReviews }) {
   );
 }
 
-// Composant pour afficher une carte de recette
 function RecipeCard({ recipe }) {
   return (
     <Box
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue("white", "gray.900")}
       maxW="sm"
       borderWidth="1px"
       rounded="lg"
       shadow="lg"
       position="relative"
-      width="full"  // Largeur pleine
-      textAlign="center" // Centrer les textes
+      width="full"
+      textAlign="center"
     >
-      {/* Image avec largeur pleine */}
       <Image
         src={recipe.image}
         alt={recipe.title}
-        width="full"  // La largeur de l'image prend toute la largeur du conteneur
-        height="280px" // Tu peux ajuster la hauteur de l'image ici
+        width="full"
+        height="280px"
         objectFit="cover"
         roundedTop="lg"
       />
-
-      {/* Contenu de la carte */}
       <Box p={4}>
-        {/* Contrainte de hauteur pour le titre */}
         <Box height="50px" overflow="hidden">
-          <Heading
-            size="md"
-            noOfLines={2}  // Limiter à deux lignes
-            textAlign="center"
-            lineHeight="1.2" // Ajuster la hauteur des lignes pour garder l'espace compact
-          >
+          <Heading size="md" noOfLines={2} textAlign="center" lineHeight="1.2">
             {recipe.title}
           </Heading>
         </Box>
@@ -83,7 +73,6 @@ function RecipeCard({ recipe }) {
         </Flex>
       </Box>
 
-      {/* Section en bas de la carte */}
       <Box
         display="flex"
         justifyContent="space-between"
@@ -91,14 +80,12 @@ function RecipeCard({ recipe }) {
         p={3}
         borderTop="1px solid"
         borderColor="gray.200"
-        width="full" // Largeur pleine pour le bas de la carte aussi
+        width="full"
       >
-        {/* Temps de préparation */}
         <Text fontSize="sm" color="gray.500">
           20 min
         </Text>
 
-        {/* Bouton "View Recipe" */}
         <Button
           size="sm"
           bg="#E9F9F0"

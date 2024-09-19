@@ -1,63 +1,73 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from "react-router-dom";
 import {
   Box,
   CloseButton,
   Flex,
   Icon,
   useColorModeValue,
-  Image
-} from '@chakra-ui/react'
-import PropTypes from 'prop-types'
-import { GoHomeFill } from 'react-icons/go'
-import { BiSolidHelpCircle } from 'react-icons/bi'
-import { MdFavorite } from 'react-icons/md'
+  Image,
+} from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import { GoHomeFill } from "react-icons/go";
+import { BiSolidHelpCircle } from "react-icons/bi";
 
 
-import { CinemateLogo, CinemateLogoDarkMode } from '@assets'
+import { CinemateLogo, CinemateLogoDarkMode } from "@assets";
 
 const LinkItems = [
-  { name: 'Home', icon: GoHomeFill, path: '/' },
-  { name: 'Favorites', icon: MdFavorite, path: '/favorite' },
-  { name: 'Help Center', icon: BiSolidHelpCircle, path: '/help' }
-]
+  { name: "Home", icon: GoHomeFill, path: "/" },
+  { name: "Help Center", icon: BiSolidHelpCircle, path: "/help" },
+];
 
 const Sidebar = ({ onClose, ...rest }) => {
-  const logoImage = useColorModeValue(CinemateLogo, CinemateLogoDarkMode)
+  const logoImage = useColorModeValue(CinemateLogo, CinemateLogoDarkMode);
   return (
     <Box
-      bg={useColorModeValue('white', '#171717')}
-      w={{ base: 'full', md: 60 }}
+      bg={useColorModeValue("white", "#171717")}
+      w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
       spacing={10}
       {...rest}
     >
       <Flex h="-40" alignItems="center" mx="5" justifyContent="space-between">
-        <Image alignSelf='center' boxSize="10rem" src={logoImage} alt="nojoom-logo" />
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+        <Image
+          alignSelf="center"
+          boxSize="10rem"
+          src={logoImage}
+          alt="nojoom-logo"
+        />
+        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} path={link.path} onClose={onClose}>
+        <NavItem
+          key={link.name}
+          icon={link.icon}
+          path={link.path}
+          onClose={onClose}
+        >
           {link.name}
         </NavItem>
       ))}
     </Box>
-  )
-}
+  );
+};
 
 const NavItem = ({ path, icon, onClose, children, ...rest }) => {
-  const activeNavItemBg = useColorModeValue('lightMode.primary', 'darkMode.primary')
-  const activeNavItemColor = useColorModeValue('white', 'black')
+  const activeNavItemBg = useColorModeValue(
+    "lightMode.primary",
+    "darkMode.primary"
+  );
+  const activeNavItemColor = useColorModeValue("white", "black");
 
-  const location = useLocation()
-  const isActive = location.pathname === path
+  const location = useLocation();
+  const isActive = location.pathname === path;
   return (
     <Box
       as={Link}
       to={path}
-      style={{ textDecoration: 'none' }}
-      _focus={{ boxShadow: 'none' }}
-      
+      style={{ textDecoration: "none" }}
+      _focus={{ boxShadow: "none" }}
     >
       <Flex
         align="center"
@@ -66,35 +76,29 @@ const NavItem = ({ path, icon, onClose, children, ...rest }) => {
         borderRadius="lg"
         role="group"
         cursor="pointer"
-        bg={ isActive ? activeNavItemBg : 'transparent' }
-        color={isActive ? activeNavItemColor : ''}
+        bg={isActive ? activeNavItemBg : "transparent"}
+        color={isActive ? activeNavItemColor : ""}
         onClick={onClose}
         _hover={{
-          bg: useColorModeValue('lightMode.primary', 'darkMode.primary'),
-          color: useColorModeValue('black', 'black')
+          bg: useColorModeValue("lightMode.primary", "darkMode.primary"),
+          color: useColorModeValue("black", "black"),
         }}
         {...rest}
       >
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="20"
-            as={icon}
-          />
-        )}
+        {icon && <Icon mr="4" fontSize="20" as={icon} />}
         {children}
       </Flex>
     </Box>
-  )
-}
+  );
+};
 NavItem.propTypes = {
   path: PropTypes.string.isRequired,
   icon: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.any
-}
+  children: PropTypes.any,
+};
 Sidebar.propTypes = {
-  onClose: PropTypes.func.isRequired
-}
+  onClose: PropTypes.func.isRequired,
+};
 
-export default Sidebar
+export default Sidebar;

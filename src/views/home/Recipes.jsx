@@ -5,17 +5,22 @@ import Pagination from "../shared/pagination";
 import { useSearch } from "../../context/SearchProvider";
 import RecipeCard from "../shared/RecipeGrid";
 
-const HomePizzaSection = ({ filter }) => {
+const HomeRecipesSection = ({ filter }) => {
   const [recipes, setRecipes] = useState([]);
-  const { searchTerm, cuisine, currentPage, setCurrentPage, refresh,setSearchTerm } =
-    useSearch();
+  const {
+    searchTerm,
+    cuisine,
+    currentPage,
+    setCurrentPage,
+    refresh,
+    setSearchTerm,
+  } = useSearch();
   const [totalPages, setTotalPages] = useState(0);
   const API_KEY = "1ac22155229e44c0b7d0016552d4e78c";
   console.log(refresh);
-  // Fetch pizzas by default and apply search and filter
   const searchRecipes = async () => {
     console.log("fetching -----");
-    let query = `query=${filter}`; // Default pizza search
+    let query = `query=${filter}`; 
     if (searchTerm) {
       query = `&query=${searchTerm}`;
     }
@@ -32,7 +37,7 @@ const HomePizzaSection = ({ filter }) => {
 
     if (data.results) {
       setRecipes(data.results);
-      setTotalPages(Math.ceil(data.totalResults / 5)); // Calculate total pages
+      setTotalPages(Math.ceil(data.totalResults / 5)); 
     } else {
       setRecipes([]);
     }
@@ -41,8 +46,8 @@ const HomePizzaSection = ({ filter }) => {
   useEffect(() => {
     console.log("filter", filter);
     searchRecipes();
-    setSearchTerm("")
-  }, [currentPage, cuisine,filter]);
+    setSearchTerm("");
+  }, [currentPage, cuisine, filter]);
 
   return (
     <Box mt={60} p={5}>
@@ -73,4 +78,4 @@ const HomePizzaSection = ({ filter }) => {
   );
 };
 
-export default HomePizzaSection;
+export default HomeRecipesSection;
