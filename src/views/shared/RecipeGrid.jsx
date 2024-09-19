@@ -61,7 +61,6 @@ function RecipeCard({ recipe }) {
       justifyContent="space-between"
       p={4}
     >
-      <Link to={`/recipe/${recipe.id}`}>
         {/* Image en cercle */}
         <Image
           src={recipe.image}
@@ -80,7 +79,6 @@ function RecipeCard({ recipe }) {
             <Rating rating={recipe.rating} numReviews={recipe.numReviews} />
           </Flex>
         </Box>
-      </Link>
 
       {/* Section en bas de la carte */}
       <Box
@@ -93,13 +91,15 @@ function RecipeCard({ recipe }) {
       >
         {/* Temps de préparation */}
         <Text fontSize="sm" color="gray.500">
-          {recipe.readyInMinutes} min
+         20 min
         </Text>
 
         {/* Bouton "View Recipe" */}
         <Button
           size="sm"
-          colorScheme="green"
+          bg="#E9F9F0"
+          color="#21BA71"
+          _hover={{ bg: "#21BA71", color: "#E9F9F0" }}
           as={Link}
           to={`/recipe/${recipe.id}`}
         >
