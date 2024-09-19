@@ -9,6 +9,7 @@ export const SearchProvider = ({ children }) => {
   const [cuisine, setCuisine] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [refresh, setRefresh] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(0);
 
   return (
     <SearchContext.Provider
@@ -20,7 +21,9 @@ export const SearchProvider = ({ children }) => {
         currentPage,
         setCurrentPage,
         setRefresh,
-        refresh
+        refresh,
+        selectedTab,
+        setSelectedTab,
       }}
     >
       {children}

@@ -5,9 +5,10 @@ import { CiSearch } from "react-icons/ci";
 
 
 const SearchFilterBar = () => {
-  const { searchTerm, setSearchTerm, cuisine, setCuisine, setCurrentPage,setRefresh } = useSearch();
+  const { searchTerm, setSearchTerm, cuisine, setCuisine, setCurrentPage,setRefresh,setSelectedTab } = useSearch();
 
   const handleSearch = () => {
+    setSelectedTab(0);
     setCurrentPage(1); 
     setRefresh((prev) => prev + 1);
   };

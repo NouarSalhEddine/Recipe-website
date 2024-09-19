@@ -1,27 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Box,
-  SimpleGrid,
-  Image,
-  Heading,
-  Text,
-} from '@chakra-ui/react';
-import Pagination from '../shared/pagination';
-import { useSearch } from '../../context/SearchProvider';
-import RecipeCard from '../shared/RecipeGrid';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Box, SimpleGrid, Image, Heading, Text } from "@chakra-ui/react";
+import Pagination from "../shared/pagination";
+import { useSearch } from "../../context/SearchProvider";
+import RecipeCard from "../shared/RecipeGrid";
 
-
-const HomePizzaSection = () => {
+const HomePizzaSection = ({ filter }) => {
   const [recipes, setRecipes] = useState([]);
-  const { searchTerm, cuisine, currentPage, setCurrentPage,refresh } = useSearch();
+  const { searchTerm, cuisine, currentPage, setCurrentPage, refresh,setSearchTerm } =
+    useSearch();
   const [totalPages, setTotalPages] = useState(0);
-  const API_KEY = 'f2f4f653540b45028956734b1ff693ad';
-console.log(refresh);
+  const API_KEY = "1ac22155229e44c0b7d0016552d4e78c";
+  console.log(refresh);
   // Fetch pizzas by default and apply search and filter
   const searchRecipes = async () => {
     console.log("fetching -----");
-    let query = `query=pizza`; // Default pizza search
+    let query = `query=${filter}`; // Default pizza search
     if (searchTerm) {
       query = `&query=${searchTerm}`;
     }
@@ -35,7 +29,7 @@ console.log(refresh);
       }&apiKey=${API_KEY}`
     );
     const data = await response.json();
-    
+
     if (data.results) {
       setRecipes(data.results);
       setTotalPages(Math.ceil(data.totalResults / 5)); // Calculate total pages
@@ -45,12 +39,13 @@ console.log(refresh);
   };
 
   useEffect(() => {
+    console.log("filter", filter);
     searchRecipes();
-  }, [currentPage, cuisine,refresh]);
+    setSearchTerm("")
+  }, [currentPage, cuisine,filter]);
 
   return (
     <Box mt={60} p={5}>
-
       {recipes.length > 0 ? (
         <SimpleGrid columns={[1, 2, 3]} spacing={5}>
           {recipes.map((recipe) => (
