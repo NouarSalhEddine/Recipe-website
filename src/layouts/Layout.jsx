@@ -10,26 +10,24 @@ const Layout = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [cuisine, setCuisine] = useState('');
 
-  // Function to handle search
-  const handleSearch = () => {
-    // Implement search logic here, e.g., make an API call
-    console.log('Searching for:', searchTerm, 'with cuisine:', cuisine);
-  };
-
   return (
     <Box minHeight="100vh" bg={useColorModeValue('lightMode.background', 'darkMode.background')}>
-      <Sidebar onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+      {/* Sidebar */}
+      <Sidebar onClose={onClose} display={{ base: 'none', md: 'block' }} />
+
+      {/* Drawer for mobile */}
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} returnFocusOnClose={false} onOverlayClick={onClose} size="full">
         <DrawerContent>
           <Sidebar onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      <MobileNav onOpen={onOpen} 
-      />
-      <Box ml={{ base: 0, md: 60 }}>
-     
-        <Outlet
-        />
+      <Box ml={{ base: 0, md: 60 }} >
+      {/* Navbar */}
+      <MobileNav onOpen={onOpen} />
+ </Box>
+      {/* Main content */}
+      <Box ml={{ base: 0, md: 60 }} pt="120px"> {/* Le contenu démarre après la sidebar */}
+        <Outlet  />
       </Box>
     </Box>
   );

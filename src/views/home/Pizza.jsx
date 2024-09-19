@@ -16,7 +16,7 @@ const HomePizzaSection = () => {
   const [recipes, setRecipes] = useState([]);
   const { searchTerm, cuisine, currentPage, setCurrentPage,refresh } = useSearch();
   const [totalPages, setTotalPages] = useState(0);
-  const API_KEY = 'de64dca170fb4aa097111e4c7d5019ee';
+  const API_KEY = 'f2f4f653540b45028956734b1ff693ad';
 console.log(refresh);
   // Fetch pizzas by default and apply search and filter
   const searchRecipes = async () => {
@@ -49,8 +49,7 @@ console.log(refresh);
   }, [currentPage, cuisine,refresh]);
 
   return (
-    <Box p={5}>
-      <Heading mb={5}>Pizza Recipes</Heading>
+    <Box mt={60} p={5}>
 
       {recipes.length > 0 ? (
         <SimpleGrid columns={[1, 2, 3]} spacing={5}>

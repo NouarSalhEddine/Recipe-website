@@ -26,7 +26,6 @@ const Sidebar = ({ onClose, ...rest }) => {
   return (
     <Box
       bg={useColorModeValue('white', '#171717')}
-      
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
