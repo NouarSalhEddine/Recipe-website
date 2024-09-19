@@ -1,10 +1,12 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Box, SimpleGrid, Image, Heading, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 import Pagination from "../shared/pagination";
 import { useSearch } from "../../context/SearchProvider";
 import RecipeCard from "../shared/RecipeCard";
+import { API_KEY } from "../shared/_constants";
 
+// eslint-disable-next-line react/prop-types
 const HomeRecipesSection = ({ filter }) => {
   const [recipes, setRecipes] = useState([]);
   const {
@@ -12,14 +14,12 @@ const HomeRecipesSection = ({ filter }) => {
     cuisine,
     currentPage,
     setCurrentPage,
-    refresh,
     setSearchTerm,
   } = useSearch();
   const [totalPages, setTotalPages] = useState(0);
-  const API_KEY = "d905b09ba20549b8af2b7114a370a904";
-  console.log(refresh);
+
+
   const searchRecipes = async () => {
-    console.log("fetching -----");
     let query = `query=${filter}`; 
     if (searchTerm) {
       query = `&query=${searchTerm}`;
@@ -54,14 +54,6 @@ const HomeRecipesSection = ({ filter }) => {
       {recipes.length > 0 ? (
         <SimpleGrid columns={[1, 2, 3]} spacing={5}>
           {recipes.map((recipe) => (
-            // <Box key={recipe.id} borderWidth="1px" borderRadius="lg" overflow="hidden">
-            //   <Link to={`/recipe/${recipe.id}`}>
-            //     <Image src={recipe.image} alt={recipe.title} />
-            //     <Box p={5}>
-            //       <Heading size="md">{recipe.title}</Heading>
-            //     </Box>
-            //   </Link>
-            // </Box>
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </SimpleGrid>

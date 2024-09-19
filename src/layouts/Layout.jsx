@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import Sidebar from "./Sidebar";
 import MobileNav from "./MobileNav";
+import Footer from "./Footer";
 
 const Layout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -15,6 +16,8 @@ const Layout = () => {
   return (
     <Box
       minHeight="100vh"
+      display="flex"
+      flexDirection="column"
       bg={useColorModeValue("lightMode.background", "darkMode.background")}
     >
       {/* Sidebar */}
@@ -33,13 +36,29 @@ const Layout = () => {
           <Sidebar onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      <Box ml={{ base: 0, md: 60 }}>
+
+      <Box
+        ml={{ base: 0, md: 60 }}
+        flex="1"
+        display="flex"
+        flexDirection="column"
+      >
         {/* Navbar */}
         <MobileNav onOpen={onOpen} />
-      </Box>
-      {/* Main content */}
-      <Box ml={{ base: 0, md: 60 }} pt="120px">
-        <Outlet />
+
+        {/* Main content */}
+        <Box
+          flex="1"
+          pt="120px" 
+        >
+          <Outlet />
+        </Box>
+        {/* Footer */}
+        <Footer
+          position="fixed"
+          bottom="0"
+          width="full"
+        />
       </Box>
     </Box>
   );

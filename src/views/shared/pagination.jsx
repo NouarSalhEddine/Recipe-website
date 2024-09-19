@@ -1,8 +1,8 @@
 // src/components/Pagination.js
-import React from 'react';
 import { Button, HStack } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/react';
 
+// eslint-disable-next-line react/prop-types
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -18,7 +18,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const bgColor = useColorModeValue("gray.900", "gray.100"); // Dark background
   const textColor = useColorModeValue("gray.100", "gray.900"); 
   return (
-    <HStack spacing={4} mt={5} justifyContent="center">
+    <HStack spacing={4} mt={16} justifyContent="center">
       <Button  color ={ useColorModeValue("gray.800", "gray.100")}
             style={{ border: "1px solid gray" }}
             _selected={{

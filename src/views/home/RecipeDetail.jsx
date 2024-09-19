@@ -1,5 +1,5 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import {
   Box,
   Heading,
@@ -10,14 +10,15 @@ import {
   VStack,
   Divider,
   useColorModeValue,
-  Flex,
 } from "@chakra-ui/react";
+import { API_KEY } from "../shared/_constants";
 
+// eslint-disable-next-line react/prop-types
 function RecipeDetail({id}) {
   // const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
 
-  const API_KEY = "d905b09ba20549b8af2b7114a370a904";
+  // const API_KEY = "d905b09ba20549b8af2b7114a370a904";
 
   useEffect(() => {
     const fetchRecipeDetail = async () => {
@@ -37,6 +38,7 @@ function RecipeDetail({id}) {
       maxW="container.md"
       mx="auto"
       p={5}
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       bg={useColorModeValue("gray.100", "gray.800")}
       borderRadius="lg"
       shadow="md"
