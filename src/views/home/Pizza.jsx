@@ -53,7 +53,7 @@ console.log(refresh);
       <Heading mb={5}>Pizza Recipes</Heading>
 
       {recipes.length > 0 ? (
-        <SimpleGrid columns={[1, 2, 3]} spacing={2}>
+        <SimpleGrid columns={[1, 2, 3]} spacing={5}>
           {recipes.map((recipe) => (
             // <Box key={recipe.id} borderWidth="1px" borderRadius="lg" overflow="hidden">
             //   <Link to={`/recipe/${recipe.id}`}>

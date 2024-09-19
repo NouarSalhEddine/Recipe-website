@@ -8,7 +8,6 @@ import {
   Text,
   Heading,
   useColorModeValue,
-  SimpleGrid,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
@@ -46,39 +45,43 @@ function Rating({ rating, numReviews }) {
 function RecipeCard({ recipe }) {
   return (
     <Box
-      bg={useColorModeValue("white", "gray.800")}
+      bg={useColorModeValue('white', 'gray.900')}
       maxW="sm"
       borderWidth="1px"
       rounded="lg"
       shadow="lg"
       position="relative"
-      borderRadius="lg"
-      overflow="hidden"
-      width="250px" // Largeur fixe de la carte
-      height="350px" // Hauteur fixe de la carte
-      display="flex"
-      flexDirection="column"
-      justifyContent="space-between"
-      p={4}
+      width="full"  // Largeur pleine
+      textAlign="center" // Centrer les textes
     >
-        {/* Image en cercle */}
-        <Image
-          src={recipe.image}
-          alt={recipe.title}
-          borderRadius="full"
-          boxSize="150px" // Taille de l'image
-          objectFit="cover"
-          mx="auto"
-          mt={3}
-        />
-        <Box p={4}>
-          <Heading size="md" noOfLines={2} textAlign="center">
+      {/* Image avec largeur pleine */}
+      <Image
+        src={recipe.image}
+        alt={recipe.title}
+        width="full"  // La largeur de l'image prend toute la largeur du conteneur
+        height="280px" // Tu peux ajuster la hauteur de l'image ici
+        objectFit="cover"
+        roundedTop="lg"
+      />
+
+      {/* Contenu de la carte */}
+      <Box p={4}>
+        {/* Contrainte de hauteur pour le titre */}
+        <Box height="50px" overflow="hidden">
+          <Heading
+            size="md"
+            noOfLines={2}  // Limiter à deux lignes
+            textAlign="center"
+            lineHeight="1.2" // Ajuster la hauteur des lignes pour garder l'espace compact
+          >
             {recipe.title}
           </Heading>
-          <Flex justifyContent="center" alignContent="center" mt={2}>
-            <Rating rating={recipe.rating} numReviews={recipe.numReviews} />
-          </Flex>
         </Box>
+
+        <Flex justifyContent="center" alignContent="center" mt={2}>
+          <Rating rating={recipe.rating} numReviews={recipe.numReviews} />
+        </Flex>
+      </Box>
 
       {/* Section en bas de la carte */}
       <Box
@@ -88,10 +91,11 @@ function RecipeCard({ recipe }) {
         p={3}
         borderTop="1px solid"
         borderColor="gray.200"
+        width="full" // Largeur pleine pour le bas de la carte aussi
       >
         {/* Temps de préparation */}
         <Text fontSize="sm" color="gray.500">
-         20 min
+          20 min
         </Text>
 
         {/* Bouton "View Recipe" */}
@@ -109,7 +113,5 @@ function RecipeCard({ recipe }) {
     </Box>
   );
 }
-
-
 
 export default RecipeCard;
