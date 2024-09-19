@@ -63,6 +63,7 @@ const HomeSection = () => {
           ].map((label, index) => (
             <Tab
               key={label}
+              // eslint-disable-next-line react-hooks/rules-of-hooks
               color={useColorModeValue("gray.800", "gray.100")}
               style={{ border: "1px solid gray" }}
               _selected={{
