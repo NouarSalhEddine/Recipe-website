@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Box, SimpleGrid, Image, Heading, Text } from "@chakra-ui/react";
 import Pagination from "../shared/pagination";
 import { useSearch } from "../../context/SearchProvider";
-import RecipeCard from "../shared/RecipeGrid";
+import RecipeCard from "../shared/RecipeCard";
 
 const HomeRecipesSection = ({ filter }) => {
   const [recipes, setRecipes] = useState([]);
@@ -16,7 +16,7 @@ const HomeRecipesSection = ({ filter }) => {
     setSearchTerm,
   } = useSearch();
   const [totalPages, setTotalPages] = useState(0);
-  const API_KEY = "1ac22155229e44c0b7d0016552d4e78c";
+  const API_KEY = "d905b09ba20549b8af2b7114a370a904";
   console.log(refresh);
   const searchRecipes = async () => {
     console.log("fetching -----");

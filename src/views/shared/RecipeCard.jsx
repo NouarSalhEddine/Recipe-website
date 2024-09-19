@@ -8,9 +8,12 @@ import {
   Text,
   Heading,
   useColorModeValue,
+  useDisclosure
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from "@chakra-ui/react";
+import RecipeDetail from "../home/RecipeDetail";
 
 // Composant de notation
 function Rating({ rating, numReviews }) {
@@ -42,7 +45,10 @@ function Rating({ rating, numReviews }) {
 }
 
 function RecipeCard({ recipe }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  
   return (
+    <>
     <Box
       bg={useColorModeValue("white", "gray.900")}
       maxW="sm"
@@ -92,13 +98,30 @@ function RecipeCard({ recipe }) {
           color="#21BA71"
           _hover={{ bg: "#21BA71", color: "#E9F9F0" }}
           as={Link}
-          to={`/recipe/${recipe.id}`}
+          onClick={onOpen}
         >
           View Recipe
         </Button>
       </Box>
     </Box>
+    <RecipeDetailModal isOpen={isOpen} onClose={onClose} recipeId={recipe.id} />
+    </>
+
   );
 }
+const RecipeDetailModal = ({ isOpen, onClose, recipeId }) => {
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Recipe Details</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <RecipeDetail id={recipeId} />
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+};
 
 export default RecipeCard;
