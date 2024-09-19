@@ -20,7 +20,7 @@ const HomeRecipesSection = ({ filter }) => {
 
 
   const searchRecipes = async () => {
-    let query = `query=${filter}`; 
+    let query = `&query=${filter}`; 
     if (searchTerm) {
       query = `&query=${searchTerm}`;
     }
